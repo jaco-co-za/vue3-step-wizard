@@ -1,6 +1,6 @@
 {
   "name": "vue3-step-wizard",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "type": "module",
   "description": "A Vue 3 step-wizard component, with no dependencies",
   "main": "./dist/vue3-step-wizard.umd.cjs",
@@ -45,6 +45,14 @@
     "typescript"
   ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaco-co-za/vue3-step-wizard.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jaco-co-za/vue3-step-wizard/issues"
+  },
+  "homepage": "https://github.com/jaco-co-za/vue3-step-wizard#readme",
   "publishConfig": {
     "access": "public"
   },
