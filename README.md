@@ -8,6 +8,12 @@ A Vue 3 + TypeScript wizard component.
 npm install vue3-step-wizard
 ```
 
+Then import the stylesheet once in your app entry:
+
+```ts
+import "vue3-step-wizard/wizard-style.css";
+```
+
 ## Usage
 
 ```vue
@@ -22,7 +28,15 @@ import StepFinish from "./steps/StepFinish.vue";
 
 const steps: WizardStep[] = [
   { name: "domain", title: "Domain", component: StepDomain },
-  { name: "business", title: "Business info", component: StepBusiness },
+  {
+    name: "business",
+    title: "Business info",
+    component: StepBusiness,
+    backVisible: true,
+    nextVisible: true,
+    nextDisabled: false,
+    backDisabled: false,
+  },
   { name: "finish", title: "Finish", component: StepFinish },
 ];
 
@@ -77,6 +91,13 @@ Wizard emits:
 
 - `step-changed` with `{ from, to }` step names.
 - `custom-event` forwarded from the active step component.
+
+Each step can optionally control the wizard buttons when `show-controls` is true:
+
+- `nextVisible` (boolean, default `true`)
+- `nextDisabled` (boolean, default `false`)
+- `backVisible` (boolean, default `currentStep > 0`)
+- `backDisabled` (boolean, default `false`)
 
 Example step component:
 

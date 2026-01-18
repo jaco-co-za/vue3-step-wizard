@@ -11,7 +11,8 @@ export default defineConfig({
     lib: {
       entry,
       name: 'Vue3StepWizard',
-      fileName: (format) => `vue3-step-wizard.${format === 'es' ? 'es' : 'umd.cjs'}`
+      fileName: (format) =>
+        format === 'es' ? 'vue3-step-wizard.es.js' : 'vue3-step-wizard.umd.cjs'
     },
     rollupOptions: {
       external: ['vue'],

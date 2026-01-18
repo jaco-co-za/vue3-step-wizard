@@ -7,6 +7,10 @@ export type WizardStep = {
   title: string;
   component: Component;
   props?: Record<string, unknown>;
+  nextVisible?: boolean;
+  nextDisabled?: boolean;
+  backVisible?: boolean;
+  backDisabled?: boolean;
 };
 
 const props = withDefaults(
@@ -88,6 +92,32 @@ const setStep = (value: number) => {
 };
 
 const isLastStep = computed(() => currentStep.value >= props.steps.length - 1);
+
+const backVisible = computed(() => {
+  const step = activeStep.value;
+  if (!step || step.backVisible === undefined) {
+    return currentStep.value > 0;
+  }
+  return step.backVisible;
+});
+
+const backDisabled = computed(() => {
+  const step = activeStep.value;
+  return step?.backDisabled ?? false;
+});
+
+const nextVisible = computed(() => {
+  const step = activeStep.value;
+  if (!step || step.nextVisible === undefined) {
+    return true;
+  }
+  return step.nextVisible;
+});
+
+const nextDisabled = computed(() => {
+  const step = activeStep.value;
+  return step?.nextDisabled ?? false;
+});
 
 const goNext = () => {
   if (currentStep.value >= props.steps.length - 1) {
@@ -189,10 +219,22 @@ defineExpose({
           @custom-event="forwardCustomEvent"
         />
         <div v-if="showControls" class="__wizard-controls">
-          <button v-if="currentStep > 0" class="__cta __ghost" type="button" @click="goBack">
+          <button
+            v-if="backVisible"
+            class="__cta __ghost"
+            type="button"
+            :disabled="backDisabled"
+            @click="goBack"
+          >
             Back
           </button>
-          <button class="__cta __primary" type="button" @click="goNext">
+          <button
+            v-if="nextVisible"
+            class="__cta __primary"
+            type="button"
+            :disabled="nextDisabled"
+            @click="goNext"
+          >
             {{ isLastStep ? 'Finish' : 'Next' }}
           </button>
         </div>
