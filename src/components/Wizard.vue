@@ -16,12 +16,14 @@ const props = withDefaults(
     sidebarTitle?: string;
     allowStepClick?: boolean;
     hiddenSteps?: string[];
+    showControls?: boolean;
   }>(),
   {
     modelValue: 0,
     sidebarTitle: 'Setup steps',
     allowStepClick: true,
-    hiddenSteps: () => []
+    hiddenSteps: () => [],
+    showControls: true
   }
 );
 
@@ -29,7 +31,7 @@ const emit = defineEmits<{
   (event: 'update:modelValue', value: number): void;
   (event: 'change', value: number): void;
   (event: 'custom-event', payload?: unknown): void;
-  (event: 'step-changed', stepName: string): void;
+  (event: 'step-changed', payload: { from: string | null; to: string }): void;
 }>();
 
 const clampStep = (value: number) => {
@@ -75,14 +77,17 @@ const setStep = (value: number) => {
   if (nextValue === currentStep.value) {
     return;
   }
+  const fromName = props.steps[currentStep.value]?.name ?? null;
+  const stepName = props.steps[nextValue]?.name;
   currentStep.value = nextValue;
   emit('update:modelValue', nextValue);
   emit('change', nextValue);
-  const stepName = props.steps[nextValue]?.name;
   if (stepName) {
-    emit('step-changed', stepName);
+    emit('step-changed', { from: fromName, to: stepName });
   }
 };
+
+const isLastStep = computed(() => currentStep.value >= props.steps.length - 1);
 
 const goNext = () => {
   if (currentStep.value >= props.steps.length - 1) {
@@ -183,6 +188,14 @@ defineExpose({
           @back="goBack"
           @custom-event="forwardCustomEvent"
         />
+        <div v-if="showControls" class="__wizard-controls">
+          <button v-if="currentStep > 0" class="__cta __ghost" type="button" @click="goBack">
+            Back
+          </button>
+          <button class="__cta __primary" type="button" @click="goNext">
+            {{ isLastStep ? 'Finish' : 'Next' }}
+          </button>
+        </div>
       </div>
     </section>
   </main>

@@ -32,8 +32,8 @@ const handleCustomEvent = (payload?: unknown) => {
   console.log('Custom event payload', payload);
 };
 
-const handleStepChanged = (stepName: string) => {
-  console.log('Step changed', stepName);
+const handleStepChanged = (payload: { from: string | null; to: string }) => {
+  console.log('Step changed', payload);
 };
 
 const wizardRef = ref<WizardExpose | null>(null);
@@ -57,6 +57,7 @@ const showBusiness = () => {
     v-model="current"
     :steps="steps"
     :allow-step-click="true"
+    :show-controls="true"
     @custom-event="handleCustomEvent"
     @step-changed="handleStepChanged"
   />
@@ -74,7 +75,7 @@ Wizard instance methods (via `ref`) let you move or toggle steps at runtime:
 You can also pass `hidden-steps` to control visibility by step name.
 
 Wizard emits:
-- `step-changed` with the active step name.
+- `step-changed` with `{ from, to }` step names.
 - `custom-event` forwarded from the active step component.
 
 Example step component:

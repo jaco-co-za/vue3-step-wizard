@@ -19,8 +19,9 @@ export const Wizard: DefineComponent<{
   sidebarTitle?: string;
   allowStepClick?: boolean;
   hiddenSteps?: string[];
+  showControls?: boolean;
 }, {}, any, any, any, any, {
-  'step-changed': (stepName: string) => void;
+  'step-changed': (payload: { from: string | null; to: string }) => void;
   'custom-event': (payload?: unknown) => void;
 }> & {
   new (): WizardExpose;
