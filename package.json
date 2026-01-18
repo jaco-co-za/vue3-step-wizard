@@ -1,6 +1,6 @@
 {
   "name": "vue3-step-wizard",
-  "version": "0.5.6",
+  "version": "0.5.7",
   "type": "module",
   "description": "A Vue 3 step-wizard component, with no dependencies",
   "main": "./dist/vue3-step-wizard.umd.cjs",

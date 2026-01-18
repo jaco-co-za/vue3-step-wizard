@@ -11,6 +11,7 @@ export type WizardStep = {
   nextDisabled?: boolean;
   backVisible?: boolean;
   backDisabled?: boolean;
+  stepViewItemClickable?: boolean;
 };
 
 const props = withDefaults(
@@ -137,11 +138,13 @@ const forwardCustomEvent = (payload?: unknown) => {
   emit('custom-event', payload);
 };
 
-const handleStepClick = (index: number) => {
-  if (!props.allowStepClick) {
+const isStepClickable = (step: WizardStep) =>
+  props.allowStepClick && (step.stepViewItemClickable ?? true);
+
+const handleStepClick = (index: number, step: WizardStep) => {
+  if (!isStepClickable(step)) {
     return;
   }
-  const step = props.steps[index];
   setStep(index);
 };
 
@@ -200,9 +203,9 @@ defineExpose({
             class="__step-item"
             :class="{
               __active: step.name === activeStep?.name,
-              __clickable: allowStepClick
+              __clickable: isStepClickable(step)
             }"
-            @click="handleStepClick(index)"
+            @click="handleStepClick(index, step)"
           >
             <span class="__step-index">{{ visibleIndex + 1 }}</span>
             <span class="__step-title">{{ step.title }}</span>

@@ -36,6 +36,7 @@ const steps: WizardStep[] = [
     nextVisible: true,
     nextDisabled: false,
     backDisabled: false,
+    stepViewItemClickable: true,
   },
   { name: "finish", title: "Finish", component: StepFinish },
 ];
@@ -98,6 +99,11 @@ Each step can optionally control the wizard buttons when `show-controls` is true
 - `nextDisabled` (boolean, default `false`)
 - `backVisible` (boolean, default `currentStep > 0`)
 - `backDisabled` (boolean, default `false`)
+
+Each step can also control whether it is clickable in the left step list when
+`allow-step-click` is true:
+
+- `stepViewItemClickable` (boolean, default `true`)
 
 Example step component:
 

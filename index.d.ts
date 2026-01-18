@@ -5,6 +5,11 @@ export type WizardStep = {
   title: string;
   component: Component;
   props?: Record<string, unknown>;
+  nextVisible?: boolean;
+  nextDisabled?: boolean;
+  backVisible?: boolean;
+  backDisabled?: boolean;
+  stepViewItemClickable?: boolean;
 };
 
 export type WizardExpose = {
