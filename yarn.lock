@@ -1480,9 +1480,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vue-wizard@workspace:.":
+"vue3-step-wizard@workspace:.":
   version: 0.0.0-use.local
-  resolution: "vue-wizard@workspace:."
+  resolution: "vue3-step-wizard@workspace:."
   dependencies:
     "@vitejs/plugin-vue": "npm:^5.0.0"
     typescript: "npm:^5.5.4"

@@ -1,11 +1,11 @@
-# vue-wizard
+# vue3-step-wizard
 
 A Vue 3 + TypeScript wizard component.
 
 ## Install
 
 ```bash
-npm install vue-wizard
+npm install vue3-step-wizard
 ```
 
 ## Usage
@@ -13,8 +13,8 @@ npm install vue-wizard
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue';
-import { Wizard, type WizardStep, type WizardExpose } from 'vue-wizard';
-import 'vue-wizard/wizard-style.css';
+import { Wizard, type WizardStep, type WizardExpose } from 'vue3-step-wizard';
+import 'vue3-step-wizard/wizard-style.css';
 
 import StepDomain from './steps/StepDomain.vue';
 import StepBusiness from './steps/StepBusiness.vue';
@@ -98,4 +98,36 @@ const emit = defineEmits<{
     </button>
   </div>
 </template>
+```
+
+## Theming
+
+All colors are driven by CSS variables defined in `wizard-style.css`. Override them in your app to theme the wizard.
+
+```css
+:root {
+  --accent: #f5b24a;
+  --accent-2: #5be4ff;
+  --text: #f5f7fb;
+  --muted: #9aa3b2;
+  --wizard-ink: #13161c;
+  --wizard-white: #ffffff;
+  --wizard-surface-750: rgba(18, 23, 36, 0.75);
+  --wizard-surface-900: rgba(18, 23, 36, 0.9);
+  --wizard-border-weak: rgba(255, 255, 255, 0.08);
+  --wizard-border: rgba(255, 255, 255, 0.1);
+  --wizard-shadow-strong: rgba(0, 0, 0, 0.35);
+}
+```
+
+To override fonts, set them on the relevant classes in your app stylesheet:
+
+```css
+.__wizard-panel h1 {
+  font-family: 'Your Display Font', sans-serif;
+}
+
+.__wizard-page {
+  font-family: 'Your UI Font', sans-serif;
+}
 ```

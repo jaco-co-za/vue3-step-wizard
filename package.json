@@ -1,17 +1,17 @@
 {
-  "name": "vue-wizard",
-  "version": "0.1.0",
+  "name": "vue3-step-wizard",
+  "version": "0.5.0",
   "type": "module",
   "description": "A Vue 3 wizard component library.",
-  "main": "./dist/vue-wizard.umd.cjs",
-  "module": "./dist/vue-wizard.es.js",
+  "main": "./dist/vue3-step-wizard.umd.cjs",
+  "module": "./dist/vue3-step-wizard.es.js",
   "types": "./index.d.ts",
   "exports": {
     ".": {
       "types": "./index.d.ts",
       "development": "./src/index.ts",
-      "import": "./dist/vue-wizard.es.js",
-      "require": "./dist/vue-wizard.umd.cjs"
+      "import": "./dist/vue3-step-wizard.es.js",
+      "require": "./dist/vue3-step-wizard.umd.cjs"
     },
     "./wizard-style.css": "./wizard-style.css"
   },

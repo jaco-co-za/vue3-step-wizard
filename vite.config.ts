@@ -10,8 +10,8 @@ export default defineConfig({
   build: {
     lib: {
       entry,
-      name: 'VueWizard',
-      fileName: (format) => `vue-wizard.${format === 'es' ? 'es' : 'umd.cjs'}`
+      name: 'Vue3StepWizard',
+      fileName: (format) => `vue3-step-wizard.${format === 'es' ? 'es' : 'umd.cjs'}`
     },
     rollupOptions: {
       external: ['vue'],
