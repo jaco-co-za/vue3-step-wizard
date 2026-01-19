@@ -161,3 +161,7 @@ To override fonts, set them on the relevant classes in your app stylesheet:
   font-family: "Your UI Font", sans-serif;
 }
 ```
+
+
+<img width="1293" height="755" alt="image" src="https://github.com/user-attachments/assets/d977203c-4332-4a4a-b93a-2882b3f3ed3b" />
+
